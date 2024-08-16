@@ -17,11 +17,14 @@ class ScuderiasController extends Controller
         $this->scuderiaRepository = $scuderiaRepository;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $scuderias = $this->scuderiaRepository->all();
+        if ($request->wantsJson()) {
+            return response()->json($scuderias);
+        }
+
         return view('list', compact('scuderias'));
-        // return response()->json($scuderias);
     }
 
     public function show(int $id)
