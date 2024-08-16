@@ -1,5 +1,7 @@
 Estructura del Proyecto app: Contiene el código principal de la aplicación, modelos, controladores, etc. database: Contiene las migraciones y seeders para la base de datos. public: Carpeta raíz del servidor web. resources: Contiene las vistas, assets (CSS, JS, imágenes), etc. routes: Define las rutas de la aplicación.
 
+URL para las vistas: http://127.0.0.1:8000/scuderias
+
 
 Tecnologías Utilizadas Laravel: Framework PHP para desarrollo web version 11. Bootstrap: Framework CSS para diseño responsivo. MySQL: Base de datos para almacenar información de los cócteles, usuarios y favoritos. Jquery
 
