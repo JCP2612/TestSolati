@@ -1,0 +1,32 @@
+
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        table-layout: auto;
+    }
+
+    th, td {
+        text-align: center;
+        padding: 8px;
+        border: 1px solid #ddd;
+        width: auto;
+        white-space: nowrap;
+    }
+
+
+    /* Estilos para los botones */
+    .btn_verde {
+        background-color: #00BD56;
+        border-radius: 5px;
+        border: 1px solid #00BD56 !important;
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+
+    .btn_verde:hover {
+        background-color: #009e46;
+        color: #fff;
+        font-weight: 500;
+    }
