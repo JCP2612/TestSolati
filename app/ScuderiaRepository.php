@@ -21,7 +21,7 @@ class ScuderiaRepository
 
     public function get(int $id)
     {
-        return $this->model->with(['scuderias'])->find($id);
+        return $this->model->find($id);
     }
 
     public function save(Scuderias $scuderias)

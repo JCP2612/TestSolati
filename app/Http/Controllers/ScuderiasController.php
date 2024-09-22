@@ -30,7 +30,11 @@ class ScuderiasController extends Controller
     public function show(int $id)
     {
         $scuderias = $this->scuderiaRepository->get($id);
-        return response()->json($scuderias);
+        if ($scuderias) {
+            return response()->json($scuderias);
+        } else {
+            return 'Scuderia no encontrada';
+        }
     }
 
     public function store(Request $request)
@@ -51,6 +55,11 @@ class ScuderiasController extends Controller
     public function destroy(Scuderias $id)
     {
         $id = $this->scuderiaRepository->delete($id);
-        return response()->json($id);
+        if ($id) {
+            // return response()->json($id);
+            return 'La scuderia ha sido eliminada';
+        } else {
+            return 'Scuderia no encontrada';
+        }
     }
 }
