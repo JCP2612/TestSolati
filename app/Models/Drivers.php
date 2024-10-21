@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Scuderias extends Model
+class Drivers extends Model
 {
     use HasFactory;
 
@@ -20,16 +20,17 @@ class Scuderias extends Model
 
     //Indicar los campos de la tabla
     protected $fillable = [
-        'nombre_scuderia',
-        'pais_de_origen',
-        'fundacion',
-        'pagina_web',
-        'ultima_gp_ganado',
+        'nombre_piloto',
+        'escuderia_actual',
+        'ultimo_gp_ganado',
+        'victorias',
+        'numero_podios',
+        'numero_pole_position',
         'puntos_campeonato'
     ];
 
-    public function scuderias()
+    public function drivers()
     {
-        return $this->hasMany(Scuderias::class);
+        return $this->hasMany(Drivers::class);
     }
 }

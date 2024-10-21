@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('scuderias', function (Blueprint $table) {
+        Schema::create('grandprix', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_scuderia');
-            $table->string('pais_de_origen');
-            $table->string('fecha_de_creacion');
-            $table->string('pagina_web');
-            $table->string('ultima_gp_ganado');
+            $table->string('nombre_gp');
+            $table->string('ubicacion');
+            $table->string('numero_vueltas');
+            $table->string('numero_kilometros');
+            $table->string('ultimo_ganador');
+            $table->string('pilotos_victorias');
+            $table->string('mejor_record');
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('scuderias');
+        Schema::dropIfExists('grandprix');
     }
 };
