@@ -26,7 +26,8 @@ class GrandPrix extends Model
         'numero_kilometros',
         'ultimo_ganador',
         'pilotos_victorias',
-        'mejor_record_pista'
+        'mejor_record',
+        'imagen_circuito'
     ];
 
     public function grandprix()

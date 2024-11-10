@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\ScuderiaRepository;
 use Illuminate\Http\Request;
 use App\Models\Scuderias;
+use Illuminate\Types\Relations\Image;
 
 class ScuderiasController extends Controller
 {
@@ -40,16 +41,34 @@ class ScuderiasController extends Controller
     public function store(Request $request)
     {
         $scuderias = new Scuderias($request->all());
-        $scuderias = $this->scuderiaRepository->save($scuderias);
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $scuderias = $this->scuderiaRepository->save($scuderias, $image);
+        } else {
+            $scuderias->save();
+        }
 
         return response()->json($scuderias);
     }
 
     public function update(Request $request, Scuderias $id)
     {
-        $id->fill($request->all());
-        $scuderias = $this->scuderiaRepository->save($id);
-        return response()->json($scuderias);
+        $request->validate([
+            'image' => 'required|image',
+        ]);
+
+        $imagePath = $request->file('image')->store('scuderias');
+
+        $image = new Image;
+        $image->path = $imagePath;
+        $id->image()->save($image);
+
+        $id->fill($request->except('image'));
+        $scuderias = $this->scuderiaRepository->save($id, $image);
+        return response()->json([
+            'scuderia' => $scuderias,
+            'image_url' => asset('storage/' . $imagePath)
+        ]);
     }
 
     public function destroy(Scuderias $id)

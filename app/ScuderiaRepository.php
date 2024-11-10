@@ -24,9 +24,17 @@ class ScuderiaRepository
         return $this->model->find($id);
     }
 
-    public function save(Scuderias $scuderias)
+    public function save(Scuderias $scuderias, $image)
     {
         $scuderias->save();
+        if ($image) {
+            $imageName = time() . '.' . $image->extension();
+            $image->move(public_path('storage'), $imageName);
+            $scuderias->images()->create([
+                'path' => 'storage/' . $imageName,
+                'name' => $imageName
+            ]);
+        }
         return $scuderias;
     }
 

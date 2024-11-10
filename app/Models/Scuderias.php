@@ -24,8 +24,10 @@ class Scuderias extends Model
         'pais_de_origen',
         'fundacion',
         'pagina_web',
-        'ultima_gp_ganado',
-        'puntos_campeonato'
+        'ultimo_gp_ganado',
+        'puntos_campeonato',
+        'bandera_scuderia',
+        'imagen_scuderia'
     ];
 
     public function scuderias()

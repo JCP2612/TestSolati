@@ -26,7 +26,9 @@ class Drivers extends Model
         'victorias',
         'numero_podios',
         'numero_pole_position',
-        'puntos_campeonato'
+        'puntos_campeonato',
+        'bandera_piloto',
+        'foto_piloto'
     ];
 
     public function drivers()
