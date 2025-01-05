@@ -25,7 +25,7 @@ class ScuderiasController extends Controller
             return response()->json($scuderias);
         }
 
-        return view('list', compact('scuderias'));
+        // return view('list', compact('scuderias'));
     }
 
     public function show(int $id)
