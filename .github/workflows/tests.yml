@@ -27,8 +27,10 @@ jobs:
       mysql:
         image: mysql:5.7
         env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: testdb
+          MYSQL_ROOT_PASSWORD: ""
+          MYSQL_DATABASE: testsolati
+          MYSQL_USER: root
+          MYSQL_PASSWORD: ""
         ports:
           - 3306:3306
         options: >-
@@ -60,11 +62,20 @@ jobs:
       - name: Run Migrations
         env:
           DB_CONNECTION: mysql
-          DB_DATABASE: testsolati
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: test_db
           DB_USERNAME: root
           DB_PASSWORD: ""
         run: |
-          php artisan migrate
+          php artisan migrate --force
 
       - name: Execute tests
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: test_db
+          DB_USERNAME: root
+          DB_PASSWORD: ""
         run: vendor/bin/phpunit
