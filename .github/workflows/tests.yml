@@ -25,12 +25,11 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:latest
         env:
-          MYSQL_ROOT_PASSWORD: ""
-          MYSQL_DATABASE: testsolati
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: test_db
           MYSQL_USER: root
-          MYSQL_PASSWORD: ""
         ports:
           - 3306:3306
         options: >-
@@ -59,12 +58,16 @@ jobs:
       - name: Generate app key
         run: php artisan key:generate
 
+      - name: Verify Database Connection
+        run: |
+          mysqladmin -h 127.0.0.1 -u root ping
+
       - name: Run Migrations
         env:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: test_db
+          DB_DATABASE: testsolati
           DB_USERNAME: root
           DB_PASSWORD: ""
         run: |
@@ -75,7 +78,7 @@ jobs:
           DB_CONNECTION: mysql
           DB_HOST: 127.0.0.1
           DB_PORT: 3306
-          DB_DATABASE: test_db
+          DB_DATABASE: testsolati
           DB_USERNAME: root
           DB_PASSWORD: ""
         run: vendor/bin/phpunit
